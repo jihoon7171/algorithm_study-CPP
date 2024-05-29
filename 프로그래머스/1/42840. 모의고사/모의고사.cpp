@@ -8,10 +8,11 @@ int twoar[8] = {2,1,2,3,2,4,2,5};
 int threear[10] = {3,3,1,1,2,2,4,4,5,5};
 
 int checkone(vector<int> answers){
+
     int onecount =0;
 for(int i=0;i<answers.size();i++){
-
-        if(answers[i] == onear[i%5]){
+    int w = i%5;
+        if(answers[i] == onear[w]){
         onecount++;    
         }
     }
@@ -19,20 +20,22 @@ for(int i=0;i<answers.size();i++){
 }
 
 int checktwo(vector<int> answers){
+
     int twocount =0;
 for(int i=0;i<answers.size();i++){
-
-        if(answers[i] == twoar[i%8]){
+     int w = i%8;
+        if(answers[i] == twoar[w]){
         twocount++;    
         }
     }
     return twocount;
 }
 int checkthree(vector<int> answers){
+
     int threecount =0;
 for(int i=0;i<answers.size();i++){
-
-        if(answers[i] == threear[i%10]){
+             int w = i%10;
+        if(answers[i] == threear[w]){
         threecount++;    
         }
     }
@@ -40,25 +43,17 @@ for(int i=0;i<answers.size();i++){
 }
 
 vector<int> solution(vector<int> answers) {
+    vector<int>result;
     int acount=0, bcount=0, ccount=0;
     vector<int> answer;
     acount = checkone(answers);
     bcount = checktwo(answers);
     ccount = checkthree(answers);
-    answer.push_back(acount);
-    answer.push_back(bcount);
-    answer.push_back(ccount);
+    int maxcount = max({acount, bcount, ccount});
+    if(maxcount == acount) answer.push_back(1);
+     if(maxcount == bcount) answer.push_back(2);
+     if(maxcount == ccount) answer.push_back(3);
     
-    sort(answer.begin(), answer.end());
-    
-    if(answer[0] > answer[1]){
-    answer.clear();
-    answer.push_back(acount);
-    }else {
-        if(answer[1] >answer[2]){
-        answer.pop_back();    
-        }
-    }
     
     
     return answer;
