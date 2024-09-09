@@ -4,7 +4,7 @@ using namespace std;
 
 int checkst(string as) {
     int count = 0;
-    size_t pos = 0;
+    int pos = 0;
 
     while (pos < as.size()) {
         if (as.find("dz=", pos) == pos) {
