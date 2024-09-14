@@ -27,8 +27,8 @@ int main() {
             bridge.push({truck.front(), 0});
             truck.pop();
         }
-        int size = bridge.size();
-        for(int i=0;i<size;i++){
+        
+        for(int i=0;i<bridge.size();i++){
             pair<int, int>current = bridge.front();
             current.second++;
             bridge.pop();
