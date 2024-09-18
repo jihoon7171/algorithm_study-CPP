@@ -49,12 +49,12 @@ int main() {
             flight[go].push_back(temp);
         }
         
-        int minans = 10000;
+        int minans ;
         
     
-        for (int i = 1; i <= n; i++) {
-            minans = min(minans, bfs(i, flight));
-        }
+        
+            minans = bfs(1, flight);
+        
         
         cout << minans << "\n";  
     }
