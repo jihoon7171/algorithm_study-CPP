@@ -1,36 +1,33 @@
-#include<iostream>
-#include<vector>
-#include<algorithm>
+#include <iostream>
 #include<cmath>
-
+#include <vector>
+#include <algorithm>
+#include <unordered_set>
+#include <queue>
+#include <map>
+#include <cstring>
+#include <climits>
+#include <string>
+#include<cstring>
+#include<deque>
 using namespace std;
 
-bool check(int n){
-    if(n==1){
+bool issosu(int a){
+    if( a== 1){
         return false;
-    }else{
-        for(int i=2;i<=sqrt(n);i++){
-            if(n%i==0){
-                return false;
-            }
+    }
+    for(int i=2;i<=sqrt(a);i++){
+        if(a%i==0){
+            return false;
         }
     }
     return true;
 }
 
-int main(){
+int main() {
     int a,b;
     cin>>a>>b;
-    int count =0;
-    int as = b-a+1;
-    for(int i=0;i<as;i++){
-        if(check(a)){
-            cout<<a<<"\n";
-        }
-    a++;
-
-
+    for(int i=a;i<=b;i++){
+        if(issosu(i)) cout<<i<<"\n";
     }
-
-
 }
