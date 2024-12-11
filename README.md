@@ -1,1 +1,1 @@
-c++ 알고리즘 문제 해결
+Solving algorithm questions in c++ 
