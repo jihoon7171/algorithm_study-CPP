@@ -9,10 +9,12 @@
 using namespace std;
 int n;
 int answer = 0;
+int longdis;
 vector<vector<pair<int, int>>>tree; //목적지, 가중치
 void run(int start, int now, int count,vector<bool> &visited){
     if(count > answer){
         answer = count;
+        longdis = now;
     }
     visited[now] = true;
     for(int i=0;i<tree[now].size();i++){
@@ -35,11 +37,25 @@ int main(){
         tree[s].push_back({e,v});
         tree[e].push_back({s,v});
     }
-    for(int i=1;i<=n;i++){
-        vector<bool>visited(n+1);
-        visited[i] = true;
-        run(i,i,0,visited);
+    vector<bool>visited(n+1);
+    visited[1] = true;
+    run(1,1,0,visited);
+
+    answer = 0;
+    for(int i=0;i<n+1;i++){
+        visited[i] = false;
     }
+    visited[longdis] = true;
+    run(longdis, longdis, 0,visited);
+
+
+
+    
+    // for(int i=1;i<=n;i++){
+    //     vector<bool>visited(n+1);
+    //     visited[i] = true;
+    //     run(i,i,0,visited);
+    // }
     cout<<answer;
 }
 
