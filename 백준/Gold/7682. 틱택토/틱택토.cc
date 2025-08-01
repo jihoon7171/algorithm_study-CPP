@@ -24,53 +24,54 @@ tuple<int, int, int> ch[8] = {
     {2, 5, 8}
 };
 
-void iswin(string temp, int dotcount, int xcount, int ocount){
-    bool xwin = false;
-    bool owin = false;
-    for(int i = 0; i < 8; i++){
-        int a, b, c;
-        tie(a, b, c) = ch[i];
-        if(temp[a] == temp[b] && temp[b] == temp[c]){
-            if(temp[a] == 'X') xwin = true;
-            if(temp[a] == 'O') owin = true;
+void iswin(string temp, int  dotcount, int xcount, int ocount){
+    int xwin = 0;
+    int owin = 0;
+    for(int i=0;i<8;i++){
+        int a,b,c;
+        tie(a,b,c) = ch[i];
+        if(temp[a]==temp[b]&&temp[b]==temp[c]&&temp[a] != '.'){
+            if(temp[a] == 'X'){
+                xwin++;
+            }else{
+                owin++;
+            }
         }
     }
-
-    // 둘 다 이긴 상태면 무조건 invalid
-    if(xwin && owin){
-        cout << "invalid\n";
+    if(xwin>0 && owin>0){
+        cout<<"invalid\n";
         return;
     }
-
-    // X가 이겼다면 X는 O보다 1개 더 많아야 함
-    if(xwin){
-        if(xcount == ocount + 1){
-            cout << "valid\n";
-            return;
+    if(xwin > 0){
+        if(xcount == ocount+1){
+            cout<<"valid\n";
+            return ;
+        }else{
+            cout<<"invalid\n";
+            return ;
         }
-        cout << "invalid\n";
-        return;
     }
-
-    // O가 이겼다면 X와 O 개수 같아야 함
-    if(owin){
+    if(owin > 0){
         if(xcount == ocount){
-            cout << "valid\n";
-            return;
+            cout<<"valid\n";
+            return ;
+        }else{
+            cout<<"invalid\n";
+            return ;
         }
-        cout << "invalid\n";
-        return;
-    }
 
-    // 승자가 없고, 판이 다 찼다면 무승부(valid)
+    }
     if(dotcount == 0){
-        cout << "valid\n";
-        return;
+        cout<<"valid\n";
+        return ;
     }
-
-    // 이 외에는 진행중인데 게임 끝난 상태 -> invalid
-    cout << "invalid\n";
+    if(dotcount > 0){
+        cout<<"invalid\n";
+        return ;
+    }
+    cout<<"valid\n"; //패배
 }
+
 
 void checking(string temp){
     int xcount = 0;
