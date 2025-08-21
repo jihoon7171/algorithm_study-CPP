@@ -13,19 +13,6 @@ vector<pair<int, int>>sq;
 int count = 0;
 vector<pair<int, int>>space(101);
 vector<int>visited(101,-1);
-void going(int now, int goal){
-    int dis = goal - now;
-    while(dis != 0){
-        if(dis >= 6 ){
-            dis -= 6;
-            ::count++;
-        }else{
-            dis -= dis;
-            ::count++;
-        }
-    }
-}
-
 void bfs(){
     queue<int>q;
     q.push(1);
@@ -33,16 +20,15 @@ void bfs(){
     while(!q.empty()){
         int now = q.front();
         q.pop();
-        for(int i=1; i<=6; i++){
-            int next = now + i;
-            if(next > 100) continue;
-
-            // 뱀/사다리 이동
-            if(space[next].second != 0) next = space[next].second;
-
-            if(visited[next] == -1){
-                visited[next] = visited[now] + 1;
-                q.push(next);
+        for(int i=1;i<=6;i++){
+            int newgo = now+i;
+            if(newgo > 101) continue;
+            if(space[newgo].second != 0){
+                newgo = space[newgo].second;
+            }
+            if(visited[newgo] == -1){
+                visited[newgo] = visited[now]+1;
+                q.push(newgo);
             }
         }
     }
