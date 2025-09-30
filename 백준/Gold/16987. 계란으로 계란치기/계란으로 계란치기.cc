@@ -15,7 +15,7 @@ void output(vector<pair<int, int>>egg){
     cout<<"\n";
 }
 int answer = 0;
-void dfs(int count, int nowegg, vector<pair<int, int>>egg){
+void dfs(int count, int nowegg, vector<pair<int, int>>&egg){
     if(nowegg >=egg.size()){
         answer = max(count, answer);
         //output(egg);
